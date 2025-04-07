@@ -7,7 +7,7 @@ const Navbar = () => {
     return (
         <nav className="navbar navbar-expand-lg navbar-light bg-light py-3 sticky-top">
             <div className="container">
-                <NavLink className="navbar-brand fw-bold fs-4 px-2" to="/">Parthian Battery Solutions</NavLink>
+            <NavLink to="/" className="font-bold text-2xl pr-2 pl-0 text-green-600 hover:text-green-800 transition">Parthian Battery Solutions</NavLink>
                 <button className="navbar-toggler mx-2" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
                 </button>
