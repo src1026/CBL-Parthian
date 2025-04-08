@@ -5,7 +5,7 @@ import Marquee from "react-fast-marquee";
 import { useDispatch } from "react-redux";
 import { addCart } from "../redux/action";
 
-import { Footer, Navbar } from "../components";
+import { Navbar } from "../components";
 import Sidebar from "../components/Sidebar";
 
 import productsData from "../api/products"; // ✅ Import local data
@@ -121,7 +121,7 @@ useEffect(() => {
           />
           <div className="card-body">
             <h5 className="card-title">
-              {item.title.substring(0, 15)}...
+              <b> {item.title.substring(0, 40)}</b>
             </h5>
           </div>
           <div className="card-body">
@@ -167,8 +167,6 @@ useEffect(() => {
           </div>
         </div>
       </div>
-
-      <Footer />
     </>
   );
 };

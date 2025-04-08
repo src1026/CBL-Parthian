@@ -3,25 +3,29 @@ const products = [
   {
     id: 1, 
     name: "DaBestBattery", 
-    image: "https://firebasestorage.googleapis.com/v0/b/v3production-ff7b4.firebasestorage.app/o/product_images%2FqWC1Tjt8kdaZ9adrMC2J%2F1.jpg?alt=media&token=ba080a4d-1df7-4b94-9834-15ede13bda9d", 
+    price: "$29,000 USD",
+    image: "https://www.slashgear.com/img/gallery/this-ingenious-car-cover-can-protect-ev-batteries-from-shifting-weather-extremes/l-intro-1690835793.jpg", 
     region: "Europe",
   }, 
   {
     id: 2,
     name: "ToyotaKawasaki",
-    image: "https://firebasestorage.googleapis.com/v0/b/v3production-ff7b4.firebasestorage.app/o/listing_images%2FmIWXHd7PSfPWu5qgV1bx%2FIMG-20250225-WA0037.jpg?alt=media&token=3d9a9440-5e1f-47c8-b05f-f37a6aae19e3",
+    price: "$6,000 USD",
+    image: "https://www.slashgear.com/img/gallery/this-ingenious-car-cover-can-protect-ev-batteries-from-shifting-weather-extremes/l-intro-1690835793.jpg",
     region: "North America",
   },
   {
     id: 3,
     name: "Connected Energy",
-    image: "https://images.crunchbase.com/image/upload/c_pad,f_auto,q_auto:eco,dpr_1/tzvswizwbwjcgozdhbnu",
+    price: "$3,000 USD",
+    image: "https://www.slashgear.com/img/gallery/this-ingenious-car-cover-can-protect-ev-batteries-from-shifting-weather-extremes/l-intro-1690835793.jpg",
     region: "Europe",
   },
   {
     id: 4,
     name: "Intertek",
-    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSPKgCKMxn9IEA0TJUSDiFcaLa0QnkxpSySlQ&s",
+    price: "$10,000",
+    image: "https://www.slashgear.com/img/gallery/this-ingenious-car-cover-can-protect-ev-batteries-from-shifting-weather-extremes/l-intro-1690835793.jpg",
     region: "Asia",
   },
 ]

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Footer, Navbar } from "../components";
+import { Navbar } from "../components";
 
 const allSuppliers = [
   {
@@ -84,7 +84,6 @@ const SupplierPage = () => {
           ))}
         </div>
       </div>
-    <Footer />
     </>
   );
 };

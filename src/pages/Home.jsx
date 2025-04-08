@@ -1,4 +1,4 @@
-import { Navbar, Product, Footer } from "../components";
+import { Navbar, Product } from "../components";
 import Sidebar from "../components/Sidebar";
 
 function Home() {
@@ -19,7 +19,6 @@ function Home() {
         </div>
       </div>
 
-      <Footer />
     </>
   );
 }

@@ -101,19 +101,20 @@ const Products = () => {
               />
               <div className="card-body">
                 <h5 className="card-title">
-                  {product.name.substring(0, 18)}...
+                  <b>{product.name.substring(0, 40)}</b>
                 </h5>
-                <p className="card-text">Region: {product.region}</p>
+                <p className="card-text"><b>Price:</b> {product.price}</p>
+                <p className="card-text"><b>Region:</b> {product.region}</p>
               </div>
               <div className="card-body">
                 <Link
                   to={"/product/" + product.id}
-                  className="btn btn-dark m-1"
+                  className="btn btn-success m-1"
                 >
                   View Details
                 </Link>
                 <button
-                  className="btn btn-dark m-1"
+                  className="btn btn-success m-1"
                   onClick={() => {
                     toast.success("Added to cart");
                     addProduct(product);
