@@ -2,24 +2,24 @@
 const products = [
   {
     id: 1, 
-    name: "DaBestBattery", 
-    price: "$29,000 USD",
+    name: "Tesla Model 3 Battery Pack", 
+    price: "$4,500",
     image: "https://www.slashgear.com/img/gallery/this-ingenious-car-cover-can-protect-ev-batteries-from-shifting-weather-extremes/l-intro-1690835793.jpg", 
-    region: "Europe",
+    region: "Virginia",
   }, 
   {
     id: 2,
-    name: "ToyotaKawasaki",
-    price: "$6,000 USD",
+    name: "2014 Nissan Leaf Battery Pack",
+    price: "$3,000 USD",
     image: "https://www.slashgear.com/img/gallery/this-ingenious-car-cover-can-protect-ev-batteries-from-shifting-weather-extremes/l-intro-1690835793.jpg",
-    region: "North America",
+    region: "New York",
   },
   {
     id: 3,
-    name: "Connected Energy",
-    price: "$3,000 USD",
+    name: "Tesla Model Y 75kWH Battery Pack",
+    price: "$11,000 USD",
     image: "https://www.slashgear.com/img/gallery/this-ingenious-car-cover-can-protect-ev-batteries-from-shifting-weather-extremes/l-intro-1690835793.jpg",
-    region: "Europe",
+    region: "Massachussets",
   },
   {
     id: 4,
