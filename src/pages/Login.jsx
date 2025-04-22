@@ -18,6 +18,7 @@ const Login = () => {
         email,
         password,
       });
+      localStorage.setItem("token", data.access_token);
       setMessage("login successful!");
       console.log("successful login, returning: ", data)
     } catch (error) {

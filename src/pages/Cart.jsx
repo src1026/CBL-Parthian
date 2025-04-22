@@ -12,7 +12,6 @@ const Cart = () => {
     setLoading(true);
     try {
       const data = await getCart();
-      // 假设后端返回的是一个数组，或者是 { items: [...] }
       setCartItems(data.items || data);
     } catch (err) {
       setError(err.message);
