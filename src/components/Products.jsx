@@ -8,11 +8,12 @@ import "react-loading-skeleton/dist/skeleton.css";
 import { Link } from "react-router-dom";
 import toast from "react-hot-toast";
 
+import productsData from "../api/products";
+
 const Products = () => {
   const [data, setData] = useState([]);
-  const [filter, setFilter] = useState(data);
+  const [filter, setFilter] = useState([]);
   const [loading, setLoading] = useState(false);
-  let componentMounted = true;
 
   const dispatch = useDispatch();
 
@@ -21,22 +22,21 @@ const Products = () => {
   };
 
   useEffect(() => {
-    const getProducts = async () => {
-      setLoading(true);
-      const response = await fetch("https://fakestoreapi.com/products/");
-      if (componentMounted) {
-        setData(await response.clone().json());
-        setFilter(await response.json());
-        setLoading(false);
-      }
+    setLoading(true);
 
-      return () => {
-        componentMounted = false;
-      };
-    };
+    const timeout = setTimeout(() => {
+      setData(productsData);
+      setFilter(productsData);
+      setLoading(false);
+    }, 1000); // simulate fetch delay
 
-    getProducts();
+    return () => clearTimeout(timeout);
   }, []);
+
+  const filterProduct = (region) => {
+    const updatedList = data.filter((item) => item.region === region);
+    setFilter(updatedList);
+  };
 
   const Loading = () => {
     return (
@@ -44,31 +44,16 @@ const Products = () => {
         <div className="col-12 py-5 text-center">
           <Skeleton height={40} width={560} />
         </div>
-        <div className="col-md-4 col-sm-6 col-xs-8 col-12 mb-4">
-          <Skeleton height={592} />
-        </div>
-        <div className="col-md-4 col-sm-6 col-xs-8 col-12 mb-4">
-          <Skeleton height={592} />
-        </div>
-        <div className="col-md-4 col-sm-6 col-xs-8 col-12 mb-4">
-          <Skeleton height={592} />
-        </div>
-        <div className="col-md-4 col-sm-6 col-xs-8 col-12 mb-4">
-          <Skeleton height={592} />
-        </div>
-        <div className="col-md-4 col-sm-6 col-xs-8 col-12 mb-4">
-          <Skeleton height={592} />
-        </div>
-        <div className="col-md-4 col-sm-6 col-xs-8 col-12 mb-4">
-          <Skeleton height={592} />
-        </div>
+        {[...Array(6)].map((_, index) => (
+          <div
+            key={index}
+            className="col-md-4 col-sm-6 col-xs-8 col-12 mb-4"
+          >
+            <Skeleton height={592} />
+          </div>
+        ))}
       </>
     );
-  };
-
-  const filterProduct = (cat) => {
-    const updatedList = data.filter((item) => item.category === cat);
-    setFilter(updatedList);
   };
 
   const ShowProducts = () => {
@@ -83,95 +68,82 @@ const Products = () => {
           </button>
           <button
             className="btn btn-outline-dark btn-sm m-2"
-            onClick={() => filterProduct("men's clothing")}
+            onClick={() => filterProduct("Europe")}
           >
-            Men's Clothing
+            Europe
           </button>
           <button
             className="btn btn-outline-dark btn-sm m-2"
-            onClick={() => filterProduct("women's clothing")}
+            onClick={() => filterProduct("North America")}
           >
-            Women's Clothing
+            North America
           </button>
           <button
             className="btn btn-outline-dark btn-sm m-2"
-            onClick={() => filterProduct("jewelery")}
+            onClick={() => filterProduct("Asia")}
           >
-            Jewelery
-          </button>
-          <button
-            className="btn btn-outline-dark btn-sm m-2"
-            onClick={() => filterProduct("electronics")}
-          >
-            Electronics
+            Asia
           </button>
         </div>
 
-        {filter.map((product) => {
-          return (
-            <div
-              id={product.id}
-              key={product.id}
-              className="col-md-4 col-sm-6 col-xs-8 col-12 mb-4"
-            >
-              <div className="card text-center h-100" key={product.id}>
-                <img
-                  className="card-img-top p-3"
-                  src={product.image}
-                  alt="Card"
-                  height={300}
-                />
-                <div className="card-body">
-                  <h5 className="card-title">
-                    {product.title.substring(0, 12)}...
-                  </h5>
-                  <p className="card-text">
-                    {product.description.substring(0, 90)}...
-                  </p>
-                </div>
-                <ul className="list-group list-group-flush">
-                  <li className="list-group-item lead">$ {product.price}</li>
-                  {/* <li className="list-group-item">Dapibus ac facilisis in</li>
-                    <li className="list-group-item">Vestibulum at eros</li> */}
-                </ul>
-                <div className="card-body">
-                  <Link
-                    to={"/product/" + product.id}
-                    className="btn btn-dark m-1"
-                  >
-                    Buy Now
-                  </Link>
-                  <button
-                    className="btn btn-dark m-1"
-                    onClick={() => {
-                      toast.success("Added to cart");
-                      addProduct(product);
-                    }}
-                  >
-                    Add to Cart
-                  </button>
-                </div>
+        {filter.map((product) => (
+          <div
+            key={product.id}
+            className="col-md-4 col-sm-6 col-xs-8 col-12 mb-4"
+          >
+            <div className="card text-center h-100">
+              <img
+                className="card-img-top p-3"
+                src={product.image}
+                alt={product.name}
+                height={200}
+                style={{ objectFit: "contain" }}
+              />
+              <div className="card-body">
+                <h5 className="card-title">
+                  <b>{product.name.substring(0, 40)}</b>
+                </h5>
+                <p className="card-text"><b>Price:</b> {product.price}</p>
+                <p className="card-text"><b>Region:</b> {product.region}</p>
+              </div>
+              <div className="card-body">
+                <Link
+                  to={"/product/" + product.id}
+                  className="btn btn-success m-1"
+                >
+                  View Details
+                </Link>
+                <button
+                  className="btn btn-success m-1"
+                  onClick={() => {
+                    toast.success("Added to cart");
+                    addProduct(product);
+                  }}
+                >
+                  Add to Cart
+                </button>
               </div>
             </div>
-          );
-        })}
+          </div>
+        ))}
       </>
     );
   };
+
   return (
-    <>
-      <div className="container my-3 py-3">
-        <div className="row">
-          <div className="col-12">
-            <h2 className="display-5 text-center">Latest Products</h2>
-            <hr />
-          </div>
-        </div>
-        <div className="row justify-content-center">
-          {loading ? <Loading /> : <ShowProducts />}
+    <div className="container my-3 py-3">
+      <div className="row">
+        <div className="col-12">
+          <h2 className="text-2xl font-bold tracking-wide text-green-600">
+            Marketplace
+          </h2>
+          <hr />
         </div>
       </div>
-    </>
+      <div className="row justify-content-center">
+        {loading ? <Loading /> : <ShowProducts />}
+      </div>
+    </div>
   );
 };
 

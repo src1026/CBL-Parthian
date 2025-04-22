@@ -1,7 +1,8 @@
 import React, { useState} from "react";
 import { Link } from "react-router-dom";
-import { Footer, Navbar } from "../components";
 import { loginUser } from "../services/userService";
+import { Navbar } from "../components";
+
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -92,7 +93,6 @@ const Login = () => {
           </div>
         </div>
       </div>
-      <Footer />
     </>
   );
 };

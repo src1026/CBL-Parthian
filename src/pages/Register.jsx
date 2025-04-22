@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Footer, Navbar } from "../components";
+import { Navbar } from "../components";
 import { Link } from 'react-router-dom';
 import { registerUser } from '../services/userService';
 const Register = () => {
@@ -94,7 +94,6 @@ const Register = () => {
               </div>
             </div>
           </div>
-          <Footer />
         </>
       );
     };

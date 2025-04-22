@@ -1,5 +1,7 @@
-import React, { useEffect, useState } from "react";
-import { Footer, Navbar } from "../components";
+import React from "react";
+import { Navbar } from "../components";
+import { useSelector, useDispatch } from "react-redux";
+import { addCart, delCart } from "../redux/action";
 import { Link } from "react-router-dom";
 import { getCart, addToCart, removeFromCart } from "../services/cartService";
 
@@ -166,7 +168,6 @@ const Cart = () => {
         {loading ? <p>Loading...</p> : cartItems.length > 0 ? <ShowCart /> : <EmptyCart />}
         {error && <p style={{ color: "red" }}>{error}</p>}
       </div>
-      <Footer />
     </>
   );
 };
