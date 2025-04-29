@@ -21,41 +21,60 @@ const Sidebar = () => {
             icon={<AiOutlineShop />}
             text="Marketplace"  
             active ={activeItem === "Marketplace"}
-            onClick={() => setActiveItem("Marketplace")}
+            onClick={() =>{
+              setActiveItem("Marketplace");
+              window.location.href = "/";
+            }
+            }              
             />
             <SidebarItem 
             icon={<FaTags />} 
             text="Offers"
-            active ={activeItem === "Offers"}
-            onClick={() => setActiveItem("Offers")}
-            />
+            active={activeItem === "Offers"}
+            onClick={() => {
+               setActiveItem("Offers");
+               window.location.href = "/offers"; // <-- Redirects to /offers
+               }}
+            />  
             <SidebarItem 
             icon={<FiShoppingBag/>} 
             text="Orders" 
             active ={activeItem === "Orders"}
-            onClick={() => setActiveItem("Orders")}
+            onClick={() => {
+              setActiveItem("Orders");
+              window.location.href = "/orders";
+            }}
             />
           </div>
-
           <div className="text-sm text-green-500 pt-6">Seller Tools</div>
           <div className="space-y-4">
             <SidebarItem 
             icon={<FaBox />} 
             text="Inventory" 
             active ={activeItem === "Inventory"}
-            onClick={() => setActiveItem("Inventory")}
+            onClick={() => {
+              setActiveItem("Inventory");
+              window.location.href = "/inventory";
+            }}
             />
             <SidebarItem 
             icon={<FaChartBar />} 
             text="Sales" 
             active ={activeItem === "Sales"}
-            onClick={() => setActiveItem("Sales")}
+            onClick={() => {
+              setActiveItem("Sales");
+              window.location.href = "/sales";
+            }}
             />
             <SidebarItem 
             icon={<FaGlobe />} 
             text="Company"
             active ={activeItem === "Company"}
-            onClick={() => setActiveItem("Company")} 
+            onClick={() => {
+              setActiveItem("Company");
+              window.location.href = "/company";
+
+            }} 
             />
           </div>
 

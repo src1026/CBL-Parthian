@@ -19,6 +19,11 @@ import {
   Checkout,
   PageNotFound,
   SupplierPage,
+  Sales,
+  OffersPage, 
+  OrdersPage,
+  InventoryPage, 
+  CompanyPage,
 } from "./pages";
 import ScrollToTop from "./components/ScrollToTop";
 import { Toaster } from "react-hot-toast";
@@ -41,6 +46,12 @@ root.render(
           <Route path="/checkout" element={<Checkout />} />
           <Route path="*" element={<PageNotFound />} />
           <Route path="/product/*" element={<PageNotFound />} />
+          <Route path="/sales" element={<Sales />} />
+          <Route path="/offers" element={<OffersPage />} />
+          <Route path="/orders" element={<OrdersPage />} />
+          <Route path="/inventory" element={<InventoryPage />} />
+          <Route path="/company" element={<CompanyPage />} />
+         
         </Routes>
       </Provider>
     </ScrollToTop>
