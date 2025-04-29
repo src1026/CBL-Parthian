@@ -1,4 +1,4 @@
-# Parthian Battery Solution Webstore
+# Parthian Battery Solutions Webstore
 
 It was made with React.js Framework.
 
@@ -13,7 +13,6 @@ It was made with React.js Framework.
 * [React](https://reactjs.org/)
 * [Redux](https://redux.js.org/)
 * [Bootstrap](https://getbootstrap.com/)
-* [Fake Store API](https://fakestoreapi.com/)
 
 
 
