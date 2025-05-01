@@ -8,7 +8,6 @@ import "react-loading-skeleton/dist/skeleton.css";
 import { Link } from "react-router-dom";
 import toast from "react-hot-toast";
 
-import productsData from "../api/products";
 
 const Products = () => {
   const [data, setData] = useState([]);
@@ -24,17 +23,21 @@ const Products = () => {
   useEffect(() => {
     setLoading(true);
 
-    const timeout = setTimeout(() => {
-      setData(productsData);
-      setFilter(productsData);
+    fetch("http://localhost:8000/batteries")
+    .then((res) => res.json())
+    .then((data) => {
+      setData(data);
+      setFilter(data);
       setLoading(false);
-    }, 1000); // simulate fetch delay
-
-    return () => clearTimeout(timeout);
+    })
+    .catch((err) => {
+      console.error("Error fetching batteries:", err);
+      setLoading(false);
+    });
   }, []);
 
   const filterProduct = (region) => {
-    const updatedList = data.filter((item) => item.region === region);
+    const updatedList = data.filter((item) => item.location === region);
     setFilter(updatedList);
   };
 
@@ -88,43 +91,44 @@ const Products = () => {
 
         {filter.map((product) => (
           <div
-            key={product.id}
-            className="col-md-4 col-sm-6 col-xs-8 col-12 mb-4"
-          >
-            <div className="card text-center h-100">
-              <img
-                className="card-img-top p-3"
-                src={product.image}
-                alt={product.name}
-                height={200}
-                style={{ objectFit: "contain" }}
-              />
-              <div className="card-body">
-                <h5 className="card-title">
-                  <b>{product.name.substring(0, 40)}</b>
-                </h5>
-                <p className="card-text"><b>Price:</b> {product.price}</p>
-                <p className="card-text"><b>Region:</b> {product.region}</p>
-              </div>
-              <div className="card-body">
-                <Link
-                  to={"/product/" + product.id}
-                  className="btn btn-success m-1"
-                >
-                  View Details
-                </Link>
-                <button
-                  className="btn btn-success m-1"
-                  onClick={() => {
-                    toast.success("Added to cart");
-                    addProduct(product);
-                  }}
-                >
-                  Add to Cart
-                </button>
-              </div>
+          key={product.batteryId} 
+          className="col-md-4 col-sm-6 col-xs-8 col-12 mb-4"
+        >
+          <div className="card text-center h-100">
+            <img
+              className="card-img-top p-3"
+              src={product.imageUrl || "https://via.placeholder.com/300x200?text=No+Image"}
+              alt={product.chemistry_type} 
+              height={200}
+              style={{ objectFit: "contain" }}
+            />
+            <div className="card-body">
+              <h5 className="card-title">
+                <b>{product.chemistry_type?.substring(0, 40)}</b> 
+              </h5>
+              <p className="card-text"><b>Price:</b> {product.price}</p>
+              <p className="card-text"><b>Location:</b> {product.location}</p>
+            </div>
+            <div className="card-body">
+              <Link
+                to={"/product/" + product.batteryId}
+                className="btn btn-success m-1"
+              >
+                View Details
+              </Link>
+              <button
+                className="btn btn-success m-1"
+                onClick={() => {
+                  toast.success("Added to cart");
+                  addProduct(product);
+                }}
+              >
+                Add to Cart
+              </button>
             </div>
           </div>
+        </div>
+        
         ))}
       </>
     );
