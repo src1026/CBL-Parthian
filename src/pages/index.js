@@ -9,3 +9,8 @@ export { default as Register } from './Register';
 export { default as Checkout } from './Checkout';
 export { default as PageNotFound } from './PageNotFound';
 export { default as SupplierPage } from './SupplierPage';
+export { default as Sales } from './Sales';
+export { default as OffersPage } from './OffersPage';
+export { default as OrdersPage } from './OrdersPage';
+export { default as InventoryPage } from './InventoryPage';
+export { default as CompanyPage } from './CompanyPage';
