@@ -14,8 +14,8 @@ import {
   AboutPage,
   ContactPage,
   Cart,
-  Login,
-  Register,
+  LoginPage,
+  RegisterPage,
   Checkout,
   PageNotFound,
   SupplierPage,
@@ -40,9 +40,9 @@ root.render(
           <Route path="/about" element={<AboutPage />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/cart" element={<Cart />} />
-          <Route path="/login" element={<Login />} />
+          <Route path="/login" element={<LoginPage />} />
           <Route path="/supplier" element={<SupplierPage/>} />
-          <Route path="/register" element={<Register />} />
+          <Route path="/register" element={<RegisterPage />} />
           <Route path="/checkout" element={<Checkout />} />
           <Route path="*" element={<PageNotFound />} />
           <Route path="/product/*" element={<PageNotFound />} />
@@ -51,7 +51,6 @@ root.render(
           <Route path="/orders" element={<OrdersPage />} />
           <Route path="/inventory" element={<InventoryPage />} />
           <Route path="/company" element={<CompanyPage />} />
-         
         </Routes>
       </Provider>
     </ScrollToTop>
