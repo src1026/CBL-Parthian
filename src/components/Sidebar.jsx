@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import {
   FaTags, FaBox, FaChartBar, FaGlobe, FaSearch
 } from "react-icons/fa";
@@ -7,8 +8,22 @@ import { AiOutlineShop } from "react-icons/ai";
 import { FiShoppingBag } from "react-icons/fi";
 
 const Sidebar = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
 
-  const [activeItem, setActiveItem] = useState("Marketplace");
+  const getActiveItem = () => {
+    const path = location.pathname;
+    if (path === "/") return "Marketplace";
+    if (path === "/offers") return "Offers";
+    if (path === "/orders") return "Orders";
+    if (path === "/inventory") return "Inventory";
+    if (path === "/sales") return "Sales";
+    if (path === "/company") return "Company";
+    return "";
+  };
+
+  const activeItem = getActiveItem();
+
   return (
     <div className="h-screen w-64 bg-white border-r px-4 py-6 flex flex-col justify-between">
       {/* Logo */}
@@ -18,63 +33,43 @@ const Sidebar = () => {
           <div className="text-sm text-green-500">Marketplace</div>
           <div className="space-y-4">
             <SidebarItem 
-            icon={<AiOutlineShop />}
-            text="Marketplace"  
-            active ={activeItem === "Marketplace"}
-            onClick={() =>{
-              setActiveItem("Marketplace");
-              window.location.href = "/";
-            }
-            }              
+              icon={<AiOutlineShop />}
+              text="Marketplace"  
+              active={activeItem === "Marketplace"}
+              onClick={() => navigate("/")}              
             />
             <SidebarItem 
-            icon={<FaTags />} 
-            text="Offers"
-            active={activeItem === "Offers"}
-            onClick={() => {
-               setActiveItem("Offers");
-               window.location.href = "/offers"; // <-- Redirects to /offers
-               }}
+              icon={<FaTags />} 
+              text="Offers"
+              active={activeItem === "Offers"}
+              onClick={() => navigate("/offers")}
             />  
             <SidebarItem 
-            icon={<FiShoppingBag/>} 
-            text="Orders" 
-            active ={activeItem === "Orders"}
-            onClick={() => {
-              setActiveItem("Orders");
-              window.location.href = "/orders";
-            }}
+              icon={<FiShoppingBag/>} 
+              text="Orders" 
+              active={activeItem === "Orders"}
+              onClick={() => navigate("/orders")}
             />
           </div>
           <div className="text-sm text-green-500 pt-6">Seller Tools</div>
           <div className="space-y-4">
             <SidebarItem 
-            icon={<FaBox />} 
-            text="Inventory" 
-            active ={activeItem === "Inventory"}
-            onClick={() => {
-              setActiveItem("Inventory");
-              window.location.href = "/inventory";
-            }}
+              icon={<FaBox />} 
+              text="Inventory" 
+              active={activeItem === "Inventory"}
+              onClick={() => navigate("/inventory")}
             />
             <SidebarItem 
-            icon={<FaChartBar />} 
-            text="Sales" 
-            active ={activeItem === "Sales"}
-            onClick={() => {
-              setActiveItem("Sales");
-              window.location.href = "/sales";
-            }}
+              icon={<FaChartBar />} 
+              text="Sales" 
+              active={activeItem === "Sales"}
+              onClick={() => navigate("/sales")}
             />
             <SidebarItem 
-            icon={<FaGlobe />} 
-            text="Company"
-            active ={activeItem === "Company"}
-            onClick={() => {
-              setActiveItem("Company");
-              window.location.href = "/company";
-
-            }} 
+              icon={<FaGlobe />} 
+              text="Company"
+              active={activeItem === "Company"}
+              onClick={() => navigate("/company")}
             />
           </div>
 
@@ -97,15 +92,17 @@ const Sidebar = () => {
 const SidebarItem = ({ icon, text, active, onClick }) => (
   <div
     onClick={onClick}
-    className={`flex items-center space-x-3 px-2 py-2 rounded-md cursor-pointer ${
+    className={`flex items-center space-x-3 px-2 py-2 rounded-md cursor-pointer transition-colors duration-200 ${
       active
-        ? "bg-green-100 text-green-600 font-semibold"
-        : "text-gray-700 hover:bg-gray-100"
+        ? 'bg-green-50 text-green-600 font-medium'
+        : 'text-gray-600 hover:bg-gray-50'
     }`}
   >
-    <div>{icon}</div>
+    <span className={`text-lg ${active ? 'text-green-500' : 'text-gray-400'}`}>
+      {icon}
+    </span>
     <span>{text}</span>
   </div>
 );
 
-export default Sidebar
+export default Sidebar;
